@@ -12,5 +12,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     int age = 40;
+    double ugur = 3.14;
+
 
 }
