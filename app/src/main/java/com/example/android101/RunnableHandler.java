@@ -20,6 +20,8 @@ public class RunnableHandler extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +32,17 @@ public class RunnableHandler extends AppCompatActivity {
         number = 0;
 
 
-
     }
+
 
     public void start (View view) {
         handler = new Handler(Looper.getMainLooper());
         runnable = new Runnable() {
             @Override
             public void run() {
-                textview.setText("Time" + number);
+                textview.setText("time" + number);
                 number++;
-                textview.setText("Time" + number );
+                textview.setText("aga" + number );
                 handler.postDelayed(runnable,1000);
 
 
@@ -57,7 +59,8 @@ public class RunnableHandler extends AppCompatActivity {
         button.setEnabled(true);
         handler.removeCallbacks(runnable);
         number = 0;
-        textview.setText("Time" + number);
+        textview.setText("maho" + number);
+
 
 
     }
@@ -78,6 +81,7 @@ diyerek      catch (InterruptedException e) {
             runablı baslatıcam.
             button.setEnabled(false); bu sekilde buttonu mainaktiviti bölümüne tanımladıgımızda starta
  2 kez bastıgımızda saniye dahada hızlanmayacaktır(bunu tanımlamadan önce hızlanıyordu)
+soru neden stop buttonunu mainaktivitede tanımlayamıyorum ?(id:button3)
 
 
 
