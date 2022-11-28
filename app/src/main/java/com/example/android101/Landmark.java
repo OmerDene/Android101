@@ -1,6 +1,8 @@
 package com.example.android101;
 
-public class Landmark {
+import java.io.Serializable;
+
+public class Landmark implements Serializable {
     String name;
     String country;
     int image;

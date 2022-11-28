@@ -1,6 +1,7 @@
 package com.example.android101;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
@@ -37,13 +38,18 @@ public class LandmarkBook extends AppCompatActivity {
         landmarkArraylist.add(collessium);
         landmarkArraylist.add(londonBridge);
 
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LandmarkAdapter landmarkAdapter = new LandmarkAdapter(landmarkArraylist);
+        binding.recyclerView.setAdapter(landmarkAdapter);
+
         // Adapter , listView , mapping
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+       /* if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,landmarkArraylist
                     .stream().map(landmark -> landmark.name).collect(Collectors.toList()));
 
             binding.listView.setAdapter(arrayAdapter);
-        }
+        }*/
 
 
     }
