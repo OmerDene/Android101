@@ -12,6 +12,8 @@ import androidx.core.content.PackageManagerCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
@@ -25,11 +27,15 @@ import com.example.android101.databinding.ActivityArtBinding;
 import com.example.android101.databinding.ActivityArtBookBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayOutputStream;
+
 public class ArtActivity extends AppCompatActivity {
     private ActivityArtBinding binding;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ActivityResultLauncher<String> permissionLauncher;
     Bitmap selectedImage;
+    SQLiteDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,31 +43,92 @@ public class ArtActivity extends AppCompatActivity {
         binding = ActivityArtBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        registerLauncher();
+
 
     }
     public void save(View view) {
+        String name = binding.editTextTextPersonName.getText().toString();
+        String artistName = binding.artistText.getText().toString();
+        String year = binding.yearText.getText().toString();
+        Bitmap smallImage = makeSmallerImage(selectedImage ,300);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        smallImage.compress(Bitmap.CompressFormat.PNG,50,outputStream);
+        byte[] byteArray =outputStream.toByteArray();
+        try {
+            database = this.openOrCreateDatabase("Arts",MODE_PRIVATE,null);
+            database.execSQL("CREATE TABLE IF NOT EXISTS arts (id INTEGER PRIMARY KEY, artname VARCHAR , paintername VARCHAR, year VARCHAR, image BLOB)");
+            String sqlString = "INSERT INTO arts (artname, paintername, year, image) VALUES(?, ?, ?, ?)";
+            SQLiteStatement sqLiteStatement = database.compileStatement(sqlString);
+            sqLiteStatement.bindString(1,name);
+            sqLiteStatement.bindString(2,artistName);
+            sqLiteStatement.bindString(3,year);
+            sqLiteStatement.bindBlob(4,byteArray);
+            sqLiteStatement.execute();
+
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+        Intent intent = new Intent(ArtActivity.this,ArtBook.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //burada sunu yaptık ,buraya kadarki tum aktivetleri kapat
+        //sadece benim cagırdıgım aktiviteye git.addFlags kodu bu ise yaradı.
+        startActivity(intent);
+
 
     }
+
+    public Bitmap makeSmallerImage(Bitmap image,int maximumSize ){
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float bitmapRatio = (float) width/ (float) height;
+        if(bitmapRatio > 1 ){
+            // lanscape image
+            width = maximumSize;
+            height = (int) (width /bitmapRatio);
+
+        }else{
+            //portrait image
+            height = maximumSize;
+            width = (int) (height * bitmapRatio);
+
+
+
+        }
+
+        return image.createScaledBitmap(image,width,height,true);
+    }
+
     public void selectImage(View view) {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                Snackbar.make(view,"Permission needed for gallery",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
 
-        }
-        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    }
+                }).show();
 
-            Snackbar.make(view,"Permission needed for galery",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            }else{
+                permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
 
-                }
-            }).show();
-        }
-        else{
-            Intent ıntenToGalery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+            }
+
+        }else{
+            Intent intentToGalery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            activityResultLauncher.launch(intentToGalery);
 
         }
 
 
     }
+
+
     private void registerLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -95,7 +162,8 @@ public class ArtActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(Boolean result) {
                 if(result ) {
-                    Intent ıntenToGalery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    Intent intentToGalery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activityResultLauncher.launch(intentToGalery);
 
 
                 }
@@ -144,8 +212,6 @@ ActivityResultLauncher<Intent> activityResultLauncher; ,   ActivityResultLaunche
 tanımladık ilki yani ActivityResultLauncher<Intent> activityResultLauncher; aktivitede galeriye gidip geri gelmek icin
 ActivityResultLauncher<String> permissionLauncher; ikincisi ise izin istemek icin kullanılır.String getirmesinin sebebi
 izinlerde string ile ugrasıyor olmamızdır.
-
-
 
 
 
