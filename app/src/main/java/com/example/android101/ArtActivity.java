@@ -50,11 +50,11 @@ public class ArtActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String info = intent.getStringExtra("info");
         if(info.equals("new")) {
-            binding.editTextTextPersonName.setText(" ");
-            binding.artistText.setText(" ");
-            binding.yearText.setText(" ");
+            binding.editTextTextPersonName.setText("");
+            binding.artistText.setText("");
+            binding.yearText.setText("");
             binding.button2.setVisibility(View.VISIBLE);
-            binding.selectImage.setImageResource(R.drawable.collesium);
+            binding.selectImage.setImageResource(R.drawable.fotosec);
 
         }else {
             int artId = intent.getIntExtra("artId",0);
@@ -71,8 +71,10 @@ public class ArtActivity extends AppCompatActivity {
                     binding.artistText.setText(cursor.getString(painterNameIx));
                     byte[] bytes = cursor.getBlob(imageIx);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes , 0,bytes.length);
+                    binding.selectImage.setImageBitmap(bitmap);
 
                 }
+                cursor.close();
 
 
             }catch (Exception e) {
