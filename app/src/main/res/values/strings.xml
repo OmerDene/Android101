@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android101</string>
+    <string name="title_activity_java_maps">JavaMaps</string>
 </resources>
