@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -27,13 +28,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.android101.databinding.ActivityJavaMapsBinding;
 import com.google.android.material.snackbar.Snackbar;
 
-public class JavaMaps extends FragmentActivity implements OnMapReadyCallback {
+public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
     private ActivityJavaMapsBinding binding;
     ActivityResultLauncher<String> permissionLauncher;
     LocationManager locationManager;
     LocationListener locationListener;
+    SharedPreferences sharedPreferences;
+    boolean info;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +51,27 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         registerLauncher();
+        sharedPreferences = this.getSharedPreferences("com.example.android101",MODE_PRIVATE);
+        info = false;
+
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMapLongClickListener(this);
          locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
          locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
-                System.out.println("location" + location.toString());
+                info = sharedPreferences.getBoolean("info",false);
+                if(info == false) {
+                    LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15));
+                    sharedPreferences.edit().putBoolean("info",true).apply();
+                }
+
 
             }
         };
@@ -81,19 +95,17 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback {
         }else{
             //request granted
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(lastLocation != null) {
+                LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation,15));
+            }
 
         }
+        mMap.setMyLocationEnabled(true);
 
-
-
-
-
-
-        LatLng effiel = new LatLng(48.8559413,2.2930037);
-        mMap.addMarker(new MarkerOptions().position(effiel).title("sogan"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(effiel,15));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(effiel));
     }
+
     private  void registerLauncher() {
         permissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
             @Override
@@ -102,6 +114,11 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback {
                     //permission granted
                     if(ContextCompat.checkSelfPermission(JavaMaps.this,Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED){
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+                        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if(lastLocation != null) {
+                            LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation,15));
+                        }
                     }
 
 
@@ -115,6 +132,13 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
+    @Override
+    public void onMapLongClick(@NonNull LatLng latLng) {
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(latLng));
+
+
+    }
 }
 /* Oncelikle eyfel kulesinin konumunu yazarak basladık uygulamamıza ,bunun icin LatLng sınıfını kullanabiliriz
 mMap.addMarker(new MarkerOptions().position(effiel).title("Effiel Tower")); bu kod blogunda mapimize bir marker
@@ -157,6 +181,12 @@ bu kısımda artık en son izin verilmemişse demektir.Ve bunun altına izin ver
 ama bundan once bu izni kullanıcıya rasyonel ederek yani neden izin istedigimizin mantıgını anlatan kod blogu ekleriz hemen ardına Snackbarı koyarız
 Snackbar.make(binding.getRoot(),"Permission Needed For Maps",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission Please", new View.OnClickListener()
 Bu altta bir snackbar acar ve neden izni istedigimizi kullanıcıya mantıklı bir sekilde belirtir.
+
+LatLng effiel = new LatLng(48.8559413,2.2930037);
+        mMap.addMarker(new MarkerOptions().position(effiel).title("sogan"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(effiel,15));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(effiel));
+uygulamayı olustururken ilk bu kodları cagırdık.su an bunlara ihtiyac kalmadı.
 
 
 
