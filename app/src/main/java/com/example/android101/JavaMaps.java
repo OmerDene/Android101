@@ -48,7 +48,7 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
         registerLauncher();
         sharedPreferences = this.getSharedPreferences("com.example.android101",MODE_PRIVATE);
