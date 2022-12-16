@@ -1,17 +1,21 @@
 package com.example.android101;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
-public class RoadRunner extends AppCompatActivity {
+public class Deneme extends AppCompatActivity {
     ImageView imageView1;
     ImageView imageView2;
     ImageView imageView3;
@@ -31,7 +35,7 @@ public class RoadRunner extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_road_runner);
+        setContentView(R.layout.activity_deneme);
         imageView1 = findViewById(R.id.imageView1);
         imageView2 = findViewById(R.id.imageView2);
         imageView3 = findViewById(R.id.imageView3);
@@ -49,12 +53,39 @@ public class RoadRunner extends AppCompatActivity {
         new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
-                timeView.setText(" " + l/1000);
+                timeView.setText("Time : " + l/1000);
 
             }
 
             @Override
             public void onFinish() {
+                timeView.setText("Time over");
+                handler.removeCallbacks(runnable);
+                for(ImageView image : imageArray) {
+                    image.setVisibility(View.INVISIBLE);
+
+                }
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Restart?");
+                alert.setMessage("Do you wanna play again?");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+
+
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this,"Game Over",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+                alert.show();
 
             }
         }.start();
@@ -62,7 +93,7 @@ public class RoadRunner extends AppCompatActivity {
     }
     public void onCreaseScore(View view) {
         score++;
-        scoreView.setText(" " + score);
+        scoreView.setText("Score : " + score);
 
 
 
