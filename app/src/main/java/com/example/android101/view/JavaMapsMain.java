@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +9,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.android101.R;
+
 public class JavaMapsMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_map_mainactivity);
+
     }
 
     @Override
@@ -27,7 +30,7 @@ public class JavaMapsMain extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add_place) {
-            Intent intent = new Intent(JavaMapsMain.this,JavaMaps.class);
+            Intent intent = new Intent(JavaMapsMain.this, JavaMaps.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
