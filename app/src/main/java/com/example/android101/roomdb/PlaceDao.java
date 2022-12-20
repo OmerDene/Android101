@@ -9,21 +9,19 @@ import com.example.android101.model.Place;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+
 @Dao
 public interface PlaceDao {
     @Query("SELECT * FROM Place")
-    List<Place> getAll();
+    Flowable<List<Place>> getAll();
 
     @Insert
-    void insert(Place place);
+    Completable insert(Place place);
 
     @Delete
-    void delete(Place place);
-
-
-
-
-
+    Completable delete(Place place);
 
 
 }

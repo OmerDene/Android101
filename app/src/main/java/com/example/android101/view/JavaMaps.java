@@ -11,6 +11,7 @@ import androidx.room.Room;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -33,6 +34,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.android101.databinding.ActivityJavaMapsBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
@@ -46,6 +52,7 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
     PlaceDao placeDao;
     Double selectedLatitude;
     Double selectedLongitude;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
 
@@ -163,15 +170,49 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
     }
     public void save(View view) {
         Place place = new Place(binding.placeNameText.getText().toString(),selectedLatitude,selectedLongitude);
-        placeDao.insert(place);
+        compositeDisposable.add(placeDao.insert(place)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(JavaMaps.this::handleResponse)
+                // 3 cesit thread var main , default ve network database(io) threadi biz
+                // io threadi ile calıstık burada.
 
 
+        );
+
+
+
+
+
+    }
+    private void handleResponse() {
+        Intent intent = new Intent(JavaMaps.this,JavaMapsMain.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
 
 
     }
     public void delete(View view) {
+        /*compositeDisposable.add(placeDao.delete()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(JavaMaps.this::handleResponse)
 
+
+        );
+*/
     }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
+    }
+
+
+
 }
 /* Oncelikle eyfel kulesinin konumunu yazarak basladık uygulamamıza ,bunun icin LatLng sınıfını kullanabiliriz
 mMap.addMarker(new MarkerOptions().position(effiel).title("Effiel Tower")); bu kod blogunda mapimize bir marker
