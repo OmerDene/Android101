@@ -17,6 +17,7 @@ import java.util.List;
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder> {
     List<Place> placeList;
     public PlaceAdapter(List<Place> placeList){
+
         this.placeList = placeList;
     }
 
@@ -34,6 +35,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(holder.itemView.getContext(), JavaMaps.class);
+                intent.putExtra("info","old");
+                intent.putExtra("place",placeList.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -42,6 +45,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
 
     @Override
     public int getItemCount() {
+
         return placeList.size();
     }
 

@@ -53,6 +53,8 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
     Double selectedLatitude;
     Double selectedLongitude;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    Place selectedPlace;
+
 
 
 
@@ -76,6 +78,7 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
         placeDao = db.placeDao();
         selectedLatitude = 0.0;
         selectedLongitude = 0.0;
+        binding.saveButton.setEnabled(false);
 
     }
 
@@ -84,49 +87,72 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMapLongClickListener(this);
-        binding.saveButton.setEnabled(false);
-         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-         locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(@NonNull Location location) {
-                info = sharedPreferences.getBoolean("info",false);
-                if(info == false) {
-                    LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15));
-                    sharedPreferences.edit().putBoolean("info",true).apply();
+        Intent intent = getIntent();
+        String intentInfo = intent.getStringExtra("info");
+        if(intentInfo.equals("new")) {
+            binding.saveButton.setVisibility(View.VISIBLE);
+            binding.deleteButton.setVisibility(View.GONE);
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    info = sharedPreferences.getBoolean("info",false);
+                    if(info == false) {
+                        LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15));
+                        sharedPreferences.edit().putBoolean("info",true).apply();
+                    }
+
+
+
+                }
+            };
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
+                if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    Snackbar.make(binding.getRoot(),"Permission Needed For Maps",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission Please", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+
+                        }
+                    }).show();
+
+                }else {
+                    //request permission
+                    permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+
+
                 }
 
+            }else{
+                //request granted
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+                Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if(lastLocation != null) {
+                    LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation,15));
+                }
 
             }
-        };
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Snackbar.make(binding.getRoot(),"Permission Needed For Maps",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission Please", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+            mMap.setMyLocationEnabled(true);
 
-                    }
-                }).show();
-
-            }else {
-                //request permission
-                permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
-
-
-            }
 
         }else{
-            //request granted
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
-            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if(lastLocation != null) {
-                LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation,15));
-            }
+            mMap.clear();
+            selectedPlace = (Place) intent.getSerializableExtra("place");
+            LatLng latLng = new LatLng(selectedPlace.latitude,selectedPlace.longitude);
+            mMap.addMarker(new MarkerOptions().position(latLng).title(selectedPlace.name));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+            binding.placeNameText.setText(selectedPlace.name);
+            binding.saveButton.setVisibility(View.GONE);
+            binding.deleteButton.setVisibility(View.VISIBLE);
 
         }
-        mMap.setMyLocationEnabled(true);
+
+
+
+
+
 
     }
 
@@ -193,14 +219,18 @@ public class JavaMaps extends FragmentActivity implements OnMapReadyCallback,Goo
 
     }
     public void delete(View view) {
-        /*compositeDisposable.add(placeDao.delete()
+        if(selectedPlace != null) {
+            compositeDisposable.add(placeDao.delete(selectedPlace)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(JavaMaps.this::handleResponse)
 
 
         );
-*/
+
+        }
+
+
     }
 
 

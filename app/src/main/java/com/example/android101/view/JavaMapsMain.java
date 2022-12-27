@@ -49,6 +49,7 @@ public class JavaMapsMain extends AppCompatActivity {
                 .subscribe(JavaMapsMain.this::handleResponse)
 
 
+
         );
 
 
@@ -74,6 +75,7 @@ public class JavaMapsMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add_place) {
             Intent intent = new Intent(JavaMapsMain.this, JavaMaps.class);
+            intent.putExtra("info", "new");
             startActivity(intent);
 
         }
