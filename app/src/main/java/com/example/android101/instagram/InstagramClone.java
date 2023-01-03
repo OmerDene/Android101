@@ -7,9 +7,11 @@ import android.renderscript.ScriptGroup;
 import android.view.View;
 
 import com.example.android101.databinding.ActivityInstagramCloneBinding;
+import com.google.firebase.auth.FirebaseAuthException;
 
 public class InstagramClone extends AppCompatActivity {
     private ActivityInstagramCloneBinding binding;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

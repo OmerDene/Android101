@@ -7,9 +7,11 @@ import android.view.View;
 
 import com.example.android101.databinding.ActivityInstagramCloneBinding;
 import com.example.android101.databinding.ActivityUploadBinding;
+import com.google.firebase.auth.FirebaseAuthException;
 
 public class UploadActivity extends AppCompatActivity {
     private ActivityUploadBinding binding;
+
 
 
     @Override
