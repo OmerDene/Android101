@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 

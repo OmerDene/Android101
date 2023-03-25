@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android101.R;
 
 import java.util.Random;
 

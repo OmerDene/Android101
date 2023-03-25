@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android101.MainActivity;
 import com.example.android101.R;
 import com.example.android101.adapter.PlaceAdapter;
 import com.example.android101.databinding.ActivityJavaMapMainactivityBinding;
@@ -24,7 +23,6 @@ import com.example.android101.roomdb.PlaceDatabase;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 

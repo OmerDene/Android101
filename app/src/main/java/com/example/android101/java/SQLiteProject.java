@@ -1,10 +1,12 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import com.example.android101.R;
 
 public class SQLiteProject extends AppCompatActivity {
 

@@ -1,19 +1,17 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
+import com.example.android101.R;
 import com.example.android101.databinding.ActivityDetailBinding;
 import com.example.android101.databinding.ActivityMainBinding;
 import com.example.android101.databinding.LandmarkBookActivityBinding;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class LandmarkBook extends AppCompatActivity {
     ArrayList<Landmark> landmarkArraylist;
@@ -28,7 +26,7 @@ public class LandmarkBook extends AppCompatActivity {
 
         landmarkArraylist = new ArrayList<>();
 
-        Landmark pisa = new Landmark("pisa","italy",R.drawable.pizza);
+        Landmark pisa = new Landmark("pisa","italy", R.drawable.pizza);
         Landmark effiel = new Landmark("effiel","france",R.drawable.eyfel);
         Landmark collessium = new Landmark("collessium","italy",R.drawable.collesium);
         Landmark londonBridge =new Landmark("LondonBridge","UK",R.drawable.londonbridge);

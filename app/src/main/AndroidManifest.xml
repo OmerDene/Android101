@@ -81,14 +81,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ArtActivity"
+            android:name=".java.ArtActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ArtBook"
+            android:name=".java.ArtBook"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,7 +101,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SQLiteProject"
+            android:name=".java.SQLiteProject"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -114,14 +114,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".java.DetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LandmarkBook"
+            android:name=".java.LandmarkBook"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -134,7 +134,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Kennyyy"
+            android:name=".java.Kennyyy"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -147,7 +147,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RunnableHandler"
+            android:name=".java.RunnableHandler"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -166,7 +166,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".java.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

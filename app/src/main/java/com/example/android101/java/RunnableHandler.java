@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.android101.R;
 
 public class RunnableHandler extends AppCompatActivity {
 

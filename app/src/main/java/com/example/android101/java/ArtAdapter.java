@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import android.content.Intent;
 import android.view.LayoutInflater;

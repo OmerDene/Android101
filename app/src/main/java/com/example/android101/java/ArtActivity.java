@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PackageManagerCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -25,6 +24,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.android101.R;
 import com.example.android101.databinding.ActivityArtBinding;
 import com.example.android101.databinding.ActivityArtBookBinding;
 import com.google.android.material.snackbar.Snackbar;

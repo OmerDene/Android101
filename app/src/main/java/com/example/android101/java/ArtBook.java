@@ -1,4 +1,4 @@
-package com.example.android101;
+package com.example.android101.java;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.android101.R;
 import com.example.android101.databinding.ActivityArtBookBinding;
 
 import java.util.ArrayList;
