@@ -8,14 +8,18 @@ import kotlinx.android.synthetic.main.activity_kotlin_neccesary.*
 
 class KotlinNeccesary : AppCompatActivity() {
     lateinit var sharedPrefrences : SharedPreferences
+    var sharedTry :Int? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_neccesary)
+
+
+
         sharedPrefrences =this.getSharedPreferences("com.example.android101", MODE_PRIVATE)
-        var sharedTry =sharedPrefrences.getInt("age",0)
+        sharedTry =sharedPrefrences.getInt("age",0)
         if(sharedTry==0){
-            ageShowText.text = "Yasınız : yok"
+            ageShowText.text = "Yasınız yok :0"
 
         }else
             ageShowText.text="Yasınız: ${sharedTry}"
@@ -36,6 +40,11 @@ class KotlinNeccesary : AppCompatActivity() {
 
     }
     fun delete(view : View){
+        sharedTry =sharedPrefrences.getInt("age",0)
+        if(sharedTry!=0){
+            sharedPrefrences.edit().remove("age",).apply()
+            ageShowText.text = "Yasınız silindi: "
+        }
 
     }
 }
