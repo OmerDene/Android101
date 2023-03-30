@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_basic_atm.*
 
-class BasicAtm : AppCompatActivity() {
+class KotlinBasicAtm : AppCompatActivity() {
     var remainder : Int = 1000
     lateinit var sharedprefrences : SharedPreferences
 
@@ -48,6 +48,7 @@ class BasicAtm : AppCompatActivity() {
         var tutar =tutarText.text.toString().toIntOrNull()
         if(tutar!=null){
             sonucText.text="Mevcut bakiye:${remainder+tutar}"
+            sharedprefrences.edit().putInt("money",tutar).apply()
         }
 
     }

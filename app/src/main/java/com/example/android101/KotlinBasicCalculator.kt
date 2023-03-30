@@ -7,7 +7,7 @@ import com.example.android101.databinding.ActivityKotlinLearningBinding
 import kotlinx.android.synthetic.main.activity_kotlin_learning.*
 
 
-class KotlinBasic : AppCompatActivity() {
+class KotlinBasicCalculator : AppCompatActivity() {
     private lateinit var binding: ActivityKotlinLearningBinding
     var number1 : Int? = null
     var number2 : Int? = null
