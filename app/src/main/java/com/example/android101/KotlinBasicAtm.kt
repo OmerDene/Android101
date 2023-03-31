@@ -1,40 +1,36 @@
 package com.example.android101
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import kotlinx.android.synthetic.main.activity_basic_atm.*
 
-class KotlinBasicAtm : AppCompatActivity() {
-    var remainder : Int = 1000
-    lateinit var sharedprefrences : SharedPreferences
-
-
-
+@SuppressLint()
+class KotlinBasicATM : AppCompatActivity() {
+    private var remainder : Int = 1000
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic_atm)
 
+        sharedPreferences = getSharedPreferences("com.example.android101", MODE_PRIVATE)
+        val sharedShow =sharedPreferences.getInt("money",0)
 
-        sharedprefrences=this.getSharedPreferences("com.example.android101", MODE_PRIVATE)
-        var sharedShow =sharedprefrences.getInt("money",0)
-        if(sharedShow!=0){
-            sonucText.text ="Mevcut para:${sharedShow}"
+        if (sharedShow!=0) {
+            val result = "Mevcut para:${sharedShow}"
+            sonucText.text = result
         }
     }
 
 
+    fun withdraw() {
+        val tutar = tutarText.text.toString().toIntOrNull()
 
-
-
-
-    fun withdraw(view : View){
-        var tutar =tutarText.text.toString().toIntOrNull()
         if(tutar!=null){
             sonucText.text="Mevcut bakiye:${remainder-tutar}"
-            sharedprefrences.edit().putInt("money",tutar).apply()
+            sharedPreferences.edit().putInt("money",tutar).apply()
         }
         if (tutar != null) {
             if(tutar > remainder){
@@ -42,18 +38,18 @@ class KotlinBasicAtm : AppCompatActivity() {
                 sonucText.text ="Yetersiz Bakiye"
             }
         }
-
     }
-    fun invest(view : View){
-        var tutar =tutarText.text.toString().toIntOrNull()
-        if(tutar!=null){
+
+    fun invest() {
+        val tutar = tutarText.text.toString().toIntOrNull()
+
+        if (tutar!=null) {
             sonucText.text="Mevcut bakiye:${remainder+tutar}"
-            sharedprefrences.edit().putInt("money",tutar).apply()
+            sharedPreferences.edit().putInt("money",tutar).apply()
         }
 
     }
-    fun learnMoney(view : View){
+    fun learnMoney() {
         sonucText.text = "Mevcut Bakiye: " + remainder
-
     }
 }
