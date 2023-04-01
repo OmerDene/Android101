@@ -10,30 +10,32 @@
         android:id="@+id/button15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="242dp"
-        android:layout_marginEnd="49dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="213dp"
         android:onClick="start"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/button16"
+        android:text="start"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="58dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="64dp"
         android:onClick="stop"
-        android:text="Button"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button15"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/runnableText" />
 
     <TextView
-        android:id="@+id/textView56"
+        android:id="@+id/runnableText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="74dp"
-        android:text="TextView"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="43dp"
+        android:hint=" Time : 0"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button15"
-        app:layout_constraintEnd_toStartOf="@+id/button16" />
+        app:layout_constraintStart_toEndOf="@+id/button15" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,43 +9,33 @@ import kotlinx.android.synthetic.main.activity_kotlin_runnable.*
 
 class KotlinRunnable : AppCompatActivity() {
     var number = 0
-    var runnable : Runnable = Runnable {  }
+    lateinit var runnable : Runnable
     var handler : Handler = Handler(Looper.getMainLooper())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_runnable)
     }
-    fun start(view: View) {
+    fun start(view : View){
 
-        number = 0
-
-        runnable = object : Runnable {
+        runnable = object : Runnable{
             override fun run() {
 
-                number = number + 1
-                textView56.text = "Time: $number"
-
+                number = number +1
+                runnableText.text = "Time : ${number}"
                 handler.postDelayed(this,1000)
 
             }
 
         }
-
         handler.post(runnable)
 
 
-
-
     }
-
-    fun stop(view: View) {
-
+    fun stop(view : View){
         handler.removeCallbacks(runnable)
         number = 0
-
-
-
-
+        runnableText.text = "Time : 0"
 
     }
+
 }
