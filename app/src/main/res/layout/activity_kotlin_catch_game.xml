@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/timeText"
-        android:layout_width="152dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/scoreText"
-        android:layout_width="152dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="22dp"
         android:gravity="center"
