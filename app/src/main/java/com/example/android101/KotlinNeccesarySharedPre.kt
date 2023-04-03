@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_kotlin_neccesary.*
 
-class KotlinNeccesaryShared : AppCompatActivity() {
+class KotlinNeccesarySharedPre : AppCompatActivity() {
     lateinit var sharedPrefrences : SharedPreferences
     var sharedTry :Int? =null
 
