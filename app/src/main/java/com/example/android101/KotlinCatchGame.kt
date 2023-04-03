@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,6 +15,8 @@ import kotlin.random.Random
 class KotlinCatchGame : AppCompatActivity() {
     private var score = 0
     val images = ArrayList<ImageView>()
+    lateinit var runnable: Runnable
+    var handler : Handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +37,17 @@ class KotlinCatchGame : AppCompatActivity() {
         object :CountDownTimer(5000,1000){
             override fun onTick(p0: Long) {
 
-                timeText.text ="Sure : ${p0/1000}"
+                timeText.text ="Time : ${p0/1000}"
 
             }
 
             override fun onFinish() {
-                Toast.makeText(this@KotlinCatchGame, "Sure doldu", Toast.LENGTH_LONG).show()
+                handler.removeCallbacks(runnable)
+                for(i in images){
+                    i.visibility =View.INVISIBLE
+                }
+
+                Toast.makeText(this@KotlinCatchGame, "Time is up", Toast.LENGTH_LONG).show()
                 var warning = AlertDialog.Builder(this@KotlinCatchGame)
                 warning.setTitle("Restart Game")
                 warning.setMessage("Do you want to play one more time ?")
@@ -74,13 +83,24 @@ class KotlinCatchGame : AppCompatActivity() {
 
     }
     fun ımageHide(){
-        for(i in images){
-           i.visibility =View.INVISIBLE
-        }
+        runnable = object :Runnable{
+            override fun run() {
+                for(i in images){
+                    i.visibility =View.INVISIBLE
+                }
 
-        var random = java.util.Random()
-        var randomIndeks = random.nextInt(9)
-        images[randomIndeks].visibility =View.VISIBLE
+                var random = java.util.Random()
+                var randomIndeks = random.nextInt(9)
+                images[randomIndeks].visibility =View.VISIBLE
+                handler.postDelayed(runnable,500)
+
+            }
+
+
+        }
+        handler.post(runnable)
+
+
 
     }
 }
