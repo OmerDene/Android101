@@ -12,7 +12,11 @@ class KotlinLandMarkDetailActiviy : AppCompatActivity() {
         binding = ActivityKotlinLandMarkDetailActiviyBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+        val intent = intent
+        val landmark = intent.getSerializableExtra("landmark") as Landmark
+        binding.landMarkNameText.text = landmark.name
+        binding.landMarkCountryText.text = landmark.country
+        binding.imageView12.setImageResource(landmark.image)
 
 
 

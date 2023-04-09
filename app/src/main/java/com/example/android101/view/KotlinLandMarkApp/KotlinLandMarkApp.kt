@@ -23,7 +23,7 @@ class KotlinLandMarkApp : AppCompatActivity() {
         val pisa = Landmark("Pisa","Italy",R.drawable.pizza)
         val eifel = Landmark("Eifel","France",R.drawable.eyfel)
         val collesum = Landmark("Collesum","Italy",R.drawable.collesium)
-        val londonBridge = Landmark("Pisa","UK",R.drawable.londonbridge)
+        val londonBridge = Landmark("LondonBridge","UK",R.drawable.londonbridge)
 
         arraylist.add(pisa)
         arraylist.add(eifel)
