@@ -19,6 +19,7 @@ import com.example.android101.R
 import com.example.android101.databinding.ActivityKotlinArtBookDetailBinding
 import com.example.android101.databinding.ActivityKotlinLandMarkDetailActiviyBinding
 import com.google.android.material.snackbar.Snackbar
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 class KotlinArtBookDetail : AppCompatActivity() {
@@ -33,16 +34,58 @@ class KotlinArtBookDetail : AppCompatActivity() {
         setContentView(view)
         registerLauncher()
 
-
-
     }
-
-
 
     fun save(view : View){
+        val artName =binding.kotlinArtNameText.text.toString()
+        val artistName =binding.kotlinArtistNameText.text.toString()
+        val year = binding.kotlinArtYearText.text.toString()
+        if(selectedBitmap!=null){
+            val smallBitmap =makeSmallerBitmap(selectedBitmap!!, maximumSize = 300)
+            val outputStream = ByteArrayOutputStream()
+            smallBitmap.compress(Bitmap.CompressFormat.PNG,50,outputStream)
+            val byteArray = outputStream.toByteArray()
+            try {
+                val dataBase =this.openOrCreateDatabase("Arts", MODE_PRIVATE,null)
+                dataBase.execSQL("CREATE TABLE IF NOT EXISTS arts (id INTEGER PRIMARY KEY, artname VARCHAR,artistname VARCHAR,year VARCHAR,image BLOB)")
+                val sqlString = "INSERT INTO arts(artname,artistname,year,image) VALUES (? , ? ,? ,?)"
+                val statement =dataBase.compileStatement(sqlString)
+                statement.bindString(1,artName)
+                statement.bindString(2,artistName)
+                statement.bindString(3,year)
+                statement.bindBlob(4,byteArray)
+                statement.execute()
+
+            }catch (e : Exception){
+                e.printStackTrace()
+
+            }
+            val intent = Intent(this@KotlinArtBookDetail,KotlinArtBook::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+
+        }
 
 
     }
+    fun makeSmallerBitmap(image: Bitmap, maximumSize : Int) : Bitmap {
+        var width = image.width
+        var height = image.height
+
+        val bitmapRatio : Double = width.toDouble() / height.toDouble()
+        if (bitmapRatio > 1) {
+            width = maximumSize
+            val scaledHeight = width / bitmapRatio
+            height = scaledHeight.toInt()
+        } else {
+            height = maximumSize
+            val scaledWidth = height * bitmapRatio
+            width = scaledWidth.toInt()
+        }
+        return Bitmap.createScaledBitmap(image,width,height,true)
+    }
+
     fun fotoSec(view: View){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
