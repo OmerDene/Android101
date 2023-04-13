@@ -3,7 +3,9 @@ package com.example.android101.KotlinArtBook
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -27,12 +29,45 @@ class KotlinArtBookDetail : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
     private  lateinit var binding : ActivityKotlinArtBookDetailBinding
+    private lateinit var dataBase : SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKotlinArtBookDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         registerLauncher()
+        val dataBase =this.openOrCreateDatabase("Arts", MODE_PRIVATE,null)
+        val intent =intent
+        val info =intent.getStringExtra("info")
+        if(info.equals("new")){
+            binding.kotlinArtYearText.setText("")
+            binding.kotlinArtNameText.setText("")
+            binding.kotlinArtistNameText.setText("")
+            binding.button17.visibility=View.VISIBLE
+
+        }else{
+            binding.button17.visibility=View.INVISIBLE
+            val selectedId =intent.getIntExtra("id",1)
+            val cursor =dataBase.rawQuery("SELECT*FROM arts WHERE id = ?", arrayOf(selectedId.toString()))
+            val artNameIx =cursor.getColumnIndex("artname")
+            val artistNameIx =cursor.getColumnIndex("artistname")
+            val yearIx = cursor.getColumnIndex("year")
+            val imageIx =cursor.getColumnIndex("image")
+            while (cursor.moveToNext()){
+                binding.kotlinArtistNameText.setText(cursor.getString(artistNameIx))
+                binding.kotlinArtNameText.setText(cursor.getString(artNameIx))
+                binding.kotlinArtYearText.setText(cursor.getString(yearIx))
+                val bytearray =cursor.getBlob(imageIx)
+                val bitmap =BitmapFactory.decodeByteArray(bytearray,0,bytearray.size)
+                binding.kotlinFotoSecImageText.setImageBitmap(bitmap)
+
+
+            }
+            cursor.close()
+
+        }
+
+
 
     }
 
@@ -46,7 +81,7 @@ class KotlinArtBookDetail : AppCompatActivity() {
             smallBitmap.compress(Bitmap.CompressFormat.PNG,50,outputStream)
             val byteArray = outputStream.toByteArray()
             try {
-                val dataBase =this.openOrCreateDatabase("Arts", MODE_PRIVATE,null)
+
                 dataBase.execSQL("CREATE TABLE IF NOT EXISTS arts (id INTEGER PRIMARY KEY, artname VARCHAR,artistname VARCHAR,year VARCHAR,image BLOB)")
                 val sqlString = "INSERT INTO arts(artname,artistname,year,image) VALUES (? , ? ,? ,?)"
                 val statement =dataBase.compileStatement(sqlString)
