@@ -22,7 +22,7 @@ class Artadapter(val artList :ArrayList<Art>) : RecyclerView.Adapter<Artadapter.
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context,KotlinArtBookDetail::class.java)
             intent.putExtra("info","old")
-            intent.putExtra("id", artList[position].id)
+            intent.putExtra("id", artList.get(position).id)
             holder.itemView.context.startActivity(intent)
         }
 

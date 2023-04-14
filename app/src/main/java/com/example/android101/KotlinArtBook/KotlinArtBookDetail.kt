@@ -35,8 +35,9 @@ class KotlinArtBookDetail : AppCompatActivity() {
         binding = ActivityKotlinArtBookDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        registerLauncher()
         val dataBase =this.openOrCreateDatabase("Arts", MODE_PRIVATE,null)
+        registerLauncher()
+
         val intent =intent
         val info =intent.getStringExtra("info")
         if(info.equals("new")){
@@ -44,11 +45,12 @@ class KotlinArtBookDetail : AppCompatActivity() {
             binding.kotlinArtNameText.setText("")
             binding.kotlinArtistNameText.setText("")
             binding.button17.visibility=View.VISIBLE
+            binding.kotlinFotoSecImageText.setImageResource(R.drawable.fotosec)
 
         }else{
             binding.button17.visibility=View.INVISIBLE
             val selectedId =intent.getIntExtra("id",1)
-            val cursor =dataBase.rawQuery("SELECT*FROM arts WHERE id = ?", arrayOf(selectedId.toString()))
+            val cursor =dataBase.rawQuery("SELECT * FROM arts WHERE id = ?", arrayOf(selectedId.toString()))
             val artNameIx =cursor.getColumnIndex("artname")
             val artistNameIx =cursor.getColumnIndex("artistname")
             val yearIx = cursor.getColumnIndex("year")
