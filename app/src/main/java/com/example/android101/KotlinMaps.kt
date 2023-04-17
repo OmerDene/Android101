@@ -1,6 +1,7 @@
 package com.example.android101
 
 import android.Manifest
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -29,6 +30,8 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationManager: LocationManager
     private lateinit var locationListener: LocationListener
     private lateinit var permissionLauncher : ActivityResultLauncher<String>
+    private lateinit var sharedPreferences: SharedPreferences
+    private var trackBoolean : Boolean? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,8 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         registerLauncher()
+        sharedPreferences =this.getSharedPreferences("com.example.android101", MODE_PRIVATE)
+        trackBoolean =false
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -48,7 +53,15 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
         locationManager =this.getSystemService(LOCATION_SERVICE) as LocationManager
         locationListener = object  :LocationListener{
             override fun onLocationChanged(p0: Location) {
-                println("Locaiton :" + p0.toString())
+                trackBoolean =sharedPreferences.getBoolean("trackBoolean",false)
+                if(trackBoolean==false){
+                    val userLocation =LatLng(p0.latitude,p0.longitude)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15f))
+                    sharedPreferences.edit().putBoolean("trackBoolean",true).apply()
+
+                }
+
+
 
             }
 
@@ -63,10 +76,17 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
             }else{
                 permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
 
+
             }
 
         }else{
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0f,locationListener)
+            val lastlocation =locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if(lastlocation!=null){
+                val userLocation =LatLng(lastlocation.latitude,lastlocation.longitude)
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15f))
+            }
+            mMap.isMyLocationEnabled =true
 
         }
 
@@ -74,8 +94,14 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
     private fun registerLauncher(){
         permissionLauncher =registerForActivityResult(ActivityResultContracts.RequestPermission()){ result ->
             if(result){
-                if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED)
+                if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) ==PackageManager.PERMISSION_GRANTED){
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
+                    val lastlocation =locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                    if(lastlocation!=null){
+                        val userLocation =LatLng(lastlocation.latitude,lastlocation.longitude)
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15f))
+                    }
+                    mMap.isMyLocationEnabled =true
 
             }else{
                 Toast.makeText(this@KotlinMaps,"Needed permission",Toast.LENGTH_LONG).show()
@@ -84,4 +110,5 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
         }
 
     }
+}
 }
