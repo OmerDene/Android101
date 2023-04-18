@@ -1,4 +1,4 @@
-package com.example.android101
+package com.example.android101.KotlinMaps
 
 import android.Manifest
 import android.content.SharedPreferences
@@ -8,11 +8,13 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.android101.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,7 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.android101.databinding.ActivityKotlinMapsBinding
 import com.google.android.material.snackbar.Snackbar
 
-class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
+class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityKotlinMapsBinding
@@ -32,6 +34,8 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var permissionLauncher : ActivityResultLauncher<String>
     private lateinit var sharedPreferences: SharedPreferences
     private var trackBoolean : Boolean? =null
+    private var selectedLatitude : Double =0.0
+    private var selectedLongitude : Double =0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +54,7 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setOnMapLongClickListener(this)
         locationManager =this.getSystemService(LOCATION_SERVICE) as LocationManager
         locationListener = object  :LocationListener{
             override fun onLocationChanged(p0: Location) {
@@ -111,4 +116,19 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback {
 
     }
 }
+
+    override fun onMapLongClick(p0: LatLng) {
+        mMap.clear()
+
+        mMap.addMarker(MarkerOptions().position(p0))
+        selectedLatitude =p0.latitude
+        selectedLongitude=p0.longitude
+
+    }
+    fun save(view : View){
+
+    }
+    fun delete(view : View){
+
+    }
 }
