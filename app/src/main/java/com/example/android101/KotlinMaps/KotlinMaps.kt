@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.room.Room
 import com.example.android101.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,6 +24,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.android101.databinding.ActivityKotlinMapsBinding
+import com.example.android101.roomdb.PlaceDao
+import com.example.android101.roomdb.PlaceDatabase
 import com.google.android.material.snackbar.Snackbar
 
 class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
@@ -36,6 +39,8 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
     private var trackBoolean : Boolean? =null
     private var selectedLatitude : Double =0.0
     private var selectedLongitude : Double =0.0
+    private lateinit var db: KotlinDataBase
+    private lateinit var placeDao :KotlinPlaceDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,8 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
         registerLauncher()
         sharedPreferences =this.getSharedPreferences("com.example.android101", MODE_PRIVATE)
         trackBoolean =false
+        db = Room.databaseBuilder(applicationContext,KotlinDataBase::class.java,"Places").build()
+        placeDao =db.KotlinPlaceDao()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -126,6 +133,9 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
 
     }
     fun save(view : View){
+        val place =Place(binding.kotlinMapsPlaceText.text.toString(),selectedLatitude,selectedLongitude)
+
+
 
     }
     fun delete(view : View){
