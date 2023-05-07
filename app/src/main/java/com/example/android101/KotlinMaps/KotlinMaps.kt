@@ -27,6 +27,7 @@ import com.example.android101.databinding.ActivityKotlinMapsBinding
 import com.example.android101.roomdb.PlaceDao
 import com.example.android101.roomdb.PlaceDatabase
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
@@ -41,6 +42,7 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
     private var selectedLongitude : Double =0.0
     private lateinit var db: KotlinDataBase
     private lateinit var placeDao :KotlinPlaceDao
+    val CompositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,6 +136,7 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
     }
     fun save(view : View){
         val place =Place(binding.kotlinMapsPlaceText.text.toString(),selectedLatitude,selectedLongitude)
+        placeDao.insert(place)
 
 
 

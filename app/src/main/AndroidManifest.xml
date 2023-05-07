@@ -43,7 +43,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="" />
+            android:value="AIzaSyDlAhZAHUKSkdr4yO68kz_0-qEWJvwu_gQ" />
 
         <activity
             android:name=".KotlinMaps.KotlinMaps"
