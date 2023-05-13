@@ -1,6 +1,7 @@
 package com.example.android101.KotlinMaps
 
 import android.Manifest
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
@@ -27,7 +28,10 @@ import com.example.android101.databinding.ActivityKotlinMapsBinding
 import com.example.android101.roomdb.PlaceDao
 import com.example.android101.roomdb.PlaceDatabase
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
@@ -136,10 +140,20 @@ class KotlinMaps : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMapLongCl
     }
     fun save(view : View){
         val place =Place(binding.kotlinMapsPlaceText.text.toString(),selectedLatitude,selectedLongitude)
-        placeDao.insert(place)
+        CompositeDisposable.add(
+            placeDao.insert(place).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(this::handleResponse)
+
+
+        )
 
 
 
+    }
+    private fun handleResponse(){
+        val intent = Intent(this,KotlinMapsMain::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
     fun delete(view : View){
 
