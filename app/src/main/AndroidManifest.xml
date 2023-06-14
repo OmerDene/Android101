@@ -18,7 +18,7 @@
         android:theme="@style/Theme.Android101"
         tools:targetApi="31">
         <activity
-            android:name=".KotlinMaps.KotlinMapsMain"
+            android:name=".KotlinInstagram"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,8 +43,31 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDlAhZAHUKSkdr4yO68kz_0-qEWJvwu_gQ" />
+            android:value="YOUR_API_KEY" />
 
+        <activity
+            android:name=".KotlinMaps"
+            android:exported="true"
+            android:label="@string/title_activity_kotlin_maps">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".KotlinMaps.KotlinMapsMain"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".KotlinMaps.KotlinMaps"
             android:exported="true"
