@@ -8,4 +8,5 @@ class KotlinInstagram : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_instagram)
     }
+    val x = 66
 }
