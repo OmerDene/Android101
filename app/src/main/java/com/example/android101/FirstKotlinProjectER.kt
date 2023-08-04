@@ -7,7 +7,7 @@ class FirstKotlinProjectER : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_kotlin_project_er)
-        var x = 5
+      /*  var x = 5
         var y = 4
 
         println(x * y)
@@ -105,7 +105,49 @@ class FirstKotlinProjectER : AppCompatActivity() {
 
         //Arrays
 
-        println("------- Array -------")
+        println("------- Array -------")*/
+        val myArray = arrayOf("James","Kirk","Rob","Lars")
+
+        //index
+        println(myArray[0])
+        myArray[0] = "James Hetfield"
+        println(myArray[0])
+
+        myArray.set(1,"Kirk Hammett")
+        println(myArray[1])
+
+        val numberArray = arrayOf(1,2,3,4,5)
+        println(numberArray[3])
+
+        val myNewArray = doubleArrayOf(1.0,2.0,3.0)
+
+        val mixedArray = arrayOf("Atil",5)
+        println(mixedArray[0])
+        println(mixedArray[1])
+
+
+        //List - ArrayList
+
+        println("------- List -------")
+
+        val myMusician = arrayListOf<String>("James","Kirk")
+        myMusician.add("Lars")
+        println(myMusician[2])
+        myMusician.add(0,"Rob")
+        println(myMusician[0])
+
+        val myArrayList = ArrayList<Int>()
+        myArrayList.add(1)
+        myArrayList.add(200)
+
+        val myMixedArrayList = ArrayList<Any>()
+        myMixedArrayList.add("Atil")
+        myMixedArrayList.add(12.25)
+        myMixedArrayList.add(true)
+
+        println(myMixedArrayList[0])
+        println(myMixedArrayList[1])
+        println(myMixedArrayList[2])
 
     }
 
