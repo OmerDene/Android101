@@ -149,6 +149,46 @@ class FirstKotlinProjectER : AppCompatActivity() {
         println(myMixedArrayList[1])
         println(myMixedArrayList[2])
 
+        val myExampleArray = arrayOf(1,1,2,3,4)
+
+        println("element 1: ${myExampleArray[0]}")
+        println("element 2: ${myExampleArray[1]}")
+
+        val mySet = setOf<Int>(1,1,2,3)
+
+        println(mySet.size)
+
+        //For Each
+
+        mySet.forEach { println(it) }
+
+        val myStringSet = HashSet<String>()
+        myStringSet.add("Atil")
+        myStringSet.add("Atil")
+        println(myStringSet.size)
+
+        //Map - HashMap
+
+        println("------- Map -------")
+
+        //Key - Value
+
+        val fruitArray = arrayOf("Apple", "Banana")
+        val caloriesArray = arrayOf(100,150)
+
+        println("${fruitArray[0]} : ${caloriesArray[0]}")
+
+        val fruitCalorieMap = hashMapOf<String,Int>()
+        fruitCalorieMap.put("Apple",100)
+        fruitCalorieMap.put("Banana",150)
+        println(fruitCalorieMap["Apple"])
+
+        val myHashMap = HashMap<String, String>()
+
+        val myNewMap = hashMapOf<String,Int>("A" to 1,"B" to 2,"C" to 3)
+        println(myNewMap["C"])
+
+
     }
 
 
