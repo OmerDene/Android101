@@ -187,6 +187,48 @@ class FirstKotlinProjectER : AppCompatActivity() {
 
         val myNewMap = hashMapOf<String,Int>("A" to 1,"B" to 2,"C" to 3)
         println(myNewMap["C"])
+        var m = 5
+        println(m)
+        m = m + 1
+        println(m)
+        m++
+        println(m)
+        m--
+        println(m)
+
+        var n = 7
+
+        println(n > m)
+
+        // &&
+        // ||
+
+        println(n > m && 1 > 2)
+        println(n > m || 1 > 2)
+
+        println(10+2)
+        println(10-2)
+        println(10*2)
+        println(10/2)
+
+        //Remainder
+        println(10%4)
+
+        //If Control
+        println("------- If Control -------")
+
+
+        val myNumberAge = 52
+
+        if (myNumberAge < 30) {
+            println("< 30")
+        } else if (myNumberAge >= 30 && myNumberAge < 40) {
+            println("30 - 40")
+        } else if (myNumberAge >= 40 && myNumberAge < 50) {
+            println("40 - 50")
+        } else {
+            println(">=50")
+        }
 
 
     }
