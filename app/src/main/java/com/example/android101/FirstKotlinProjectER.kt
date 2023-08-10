@@ -229,6 +229,31 @@ class FirstKotlinProjectER : AppCompatActivity() {
         } else {
             println(">=50")
         }
+        val day = 3
+        var dayString = ""
+
+        /*
+        if (day == 1) {
+            dayString = "Monday"
+        } else if ( day == 2) {
+            dayString = "Tuesday"
+        } else if (day == 3) {
+            dayString = "Wednesday"
+        }
+
+        println(dayString)
+
+         */
+
+        when(day) {
+
+            1 -> dayString = "Monday"
+            2 -> dayString = "Tuesday"
+            3 -> dayString = "Wednesday"
+            else -> dayString = ""
+        }
+
+        println(dayString)
 
 
     }
