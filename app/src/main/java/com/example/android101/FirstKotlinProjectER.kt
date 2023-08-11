@@ -254,6 +254,46 @@ class FirstKotlinProjectER : AppCompatActivity() {
         }
 
         println(dayString)
+        val myArrayofNumbers = arrayOf(12,15,18,21,24,27,30,33)
+        val q = myArrayofNumbers[0] / 3 * 5
+        println(q)
+
+        for (num in myArrayofNumbers) {
+            val z = num / 3 * 5
+            println(z)
+        }
+
+        for (i in myArrayofNumbers.indices) {
+            val qz = myArrayofNumbers[i] / 3 * 5
+            println(qz)
+        }
+
+        for (b in 0..9) {
+            println(b)
+        }
+
+        val myStringArrayList = ArrayList<String>()
+        myStringArrayList.add("Atil")
+        myStringArrayList.add("Samancioglu")
+        myStringArrayList.add("Bar")
+
+        for (str in myStringArrayList) {
+            println(str)
+        }
+
+        myStringArrayList.forEach { println(it) }
+
+        //While Loop
+
+        println("------- While Loop -------")
+
+
+        var j = 0
+
+        while (j < 10) {
+            println(j)
+            j = j + 1
+        }
 
 
     }
