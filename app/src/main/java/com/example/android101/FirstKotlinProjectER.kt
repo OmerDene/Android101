@@ -2,11 +2,13 @@ package com.example.android101
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 
 class FirstKotlinProjectER : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_kotlin_project_er)
+        sum(10,25)
       /*  var x = 5
         var y = 4
 
@@ -296,6 +298,10 @@ class FirstKotlinProjectER : AppCompatActivity() {
         }
 
 
+    }
+    fun sum(a:Int ,b:Int) {
+        val sumTextview = findViewById<TextView>(R.id.firstKotlinErTextview)
+        sumTextview.text = "merhaba"
     }
 
 
