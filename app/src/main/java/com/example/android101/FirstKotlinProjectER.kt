@@ -309,7 +309,10 @@ class FirstKotlinProjectER : AppCompatActivity() {
     fun buttonClicked(omer : View){
         sumtextView.text = "button clicked"
 
+
     }
+
+
 
 
 
