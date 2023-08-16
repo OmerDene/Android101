@@ -12,6 +12,11 @@ class FirstKotlinProjectER : AppCompatActivity() {
         setContentView(R.layout.activity_first_kotlin_project_er)
         sumtextView = findViewById(R.id.firstKotlinErTextview)
         sum(2420,7585)
+        var simpSon = FirstSimpson("mahmut",25,"kripto")
+
+        simpSon.omer(49)
+        println(simpSon.height)
+
       /*  var x = 5
         var y = 4
 
@@ -111,7 +116,7 @@ class FirstKotlinProjectER : AppCompatActivity() {
         //Arrays
 
         println("------- Array -------")*/
-        val myArray = arrayOf("James","Kirk","Rob","Lars")
+       /* val myArray = arrayOf("James","Kirk","Rob","Lars")
 
         //index
         println(myArray[0])
@@ -300,7 +305,7 @@ class FirstKotlinProjectER : AppCompatActivity() {
             j = j + 1
         }
 
-
+*/
     }
     fun sum(a:Int ,b:Int) {
         val sumTextview = findViewById<TextView>(R.id.firstKotlinErTextview)

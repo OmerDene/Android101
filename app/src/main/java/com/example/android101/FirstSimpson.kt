@@ -1,7 +1,13 @@
 package com.example.android101
 
 class FirstSimpson( var name : String, var age: Int, var job: String) {
-    private var height = 0
+  var height = 0
+    fun omer (q : Int){
+        if(q > 50){
+            height = q
+        }
+
+    }
 /*
 //Property
 var name = ""
