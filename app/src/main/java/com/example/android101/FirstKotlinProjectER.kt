@@ -16,6 +16,16 @@ class FirstKotlinProjectER : AppCompatActivity() {
 
         simpSon.omer(49)
         println(simpSon.height)
+        var myString : String? = null
+        myString = "test"
+        println(myString)
+        //Nullability
+
+        var myAge : Int? = null
+        //myAge = 50
+        // !! ?
+
+        //println(myAge!! * 10)
 
       /*  var x = 5
         var y = 4
