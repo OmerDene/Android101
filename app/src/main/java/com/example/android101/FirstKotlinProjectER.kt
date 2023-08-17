@@ -26,106 +26,128 @@ class FirstKotlinProjectER : AppCompatActivity() {
         // !! ?
 
         //println(myAge!! * 10)
+        //2) safe call
 
-      /*  var x = 5
-        var y = 4
+        println(myAge?.minus(10))
 
-        println(x * y)
+        //3)
 
-        var age = 35
-
-        val result = age / 7 * 5
-
-        println(result)
-
-        //Defining
-        var myInteger : Int
-
-        // Initialize
-        myInteger = 10
-
-        myInteger = 20
-
-        val a : Int = 23
-
-        println(a/2)
-
-        //Long
-
-        var myLong : Long = 100
+        if(myAge != null) {
+            println(myAge.minus(10))
+        } else {
+            println("myAge is null")
+        }
 
 
-        //Double & Float
+        //4) elvis operator
 
-        println("-------Double & Float -------")
+        println(myAge?.minus(10) ?: -10)
 
-        val pi = 3.14
-
-
-        println(pi * 2.0)
-
-        val myFloat = 3.14f
-
-        println (myFloat * 2)
-
-        var myAge : Double
-        myAge = 23.0
-        println(myAge/2)
-
-        //camelCase
-        //snake_case
+        //5)
+        myAge?.let {
+            println(it * 10)
+        }
 
 
-        //String
-        println("------- String -------")
+        /*  var x = 5
+          var y = 4
 
-        val myString = "atil samancioglu"
-        val name = "James"
-        val surname = "Hetfield"
+          println(x * y)
 
-        val fullname = name + " " + surname
+          var age = 35
 
-        println(fullname)
+          val result = age / 7 * 5
 
-        val larsName : String = "Lars"
+          println(result)
 
-        println(myString.capitalize())
-        var myBoolean : Boolean = true
-        myBoolean = false
+          //Defining
+          var myInteger : Int
 
-        var isAlive = true
+          // Initialize
+          myInteger = 10
 
-        // <
-        // >
-        // <=
-        // >=
-        // ==
-        // !=
-        // && -> AND
-        // || -> OR
+          myInteger = 20
 
-        println(3 < 5)
-        println(6 < 3)
-        println(3 == 3)
-        println ( 4 != 5)
+          val a : Int = 23
+
+          println(a/2)
+
+          //Long
+
+          var myLong : Long = 100
 
 
-        //Conversion
-        println("------- Conversion -------")
+          //Double & Float
 
-        var myNumber = 5
-        var myLongNumber = myNumber.toLong()
-        println(myLongNumber)
+          println("-------Double & Float -------")
 
-        var input = "10"
-        var inputInteger = input.toInt()
-        println(inputInteger * 2)
+          val pi = 3.14
 
-        //Collections
 
-        //Arrays
+          println(pi * 2.0)
 
-        println("------- Array -------")*/
+          val myFloat = 3.14f
+
+          println (myFloat * 2)
+
+          var myAge : Double
+          myAge = 23.0
+          println(myAge/2)
+
+          //camelCase
+          //snake_case
+
+
+          //String
+          println("------- String -------")
+
+          val myString = "atil samancioglu"
+          val name = "James"
+          val surname = "Hetfield"
+
+          val fullname = name + " " + surname
+
+          println(fullname)
+
+          val larsName : String = "Lars"
+
+          println(myString.capitalize())
+          var myBoolean : Boolean = true
+          myBoolean = false
+
+          var isAlive = true
+
+          // <
+          // >
+          // <=
+          // >=
+          // ==
+          // !=
+          // && -> AND
+          // || -> OR
+
+          println(3 < 5)
+          println(6 < 3)
+          println(3 == 3)
+          println ( 4 != 5)
+
+
+          //Conversion
+          println("------- Conversion -------")
+
+          var myNumber = 5
+          var myLongNumber = myNumber.toLong()
+          println(myLongNumber)
+
+          var input = "10"
+          var inputInteger = input.toInt()
+          println(inputInteger * 2)
+
+          //Collections
+
+          //Arrays
+
+          println("------- Array -------")*/
        /* val myArray = arrayOf("James","Kirk","Rob","Lars")
 
         //index
