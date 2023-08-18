@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstKotlinCarApp">
+
+    <EditText
+        android:id="@+id/editTextCarBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="Brand Enter"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="39dp"
+        android:ems="10"
+        android:hint="Color Enter"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/editTextCarBrand"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCarBrand" />
+
+    <EditText
+        android:id="@+id/editTextYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Year Enter"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/editTextColor"
+        app:layout_constraintTop_toBottomOf="@+id/editTextColor" />
+
+    <Button
+        android:id="@+id/clickCarPropertiesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="51dp"
+        android:text="Showproperties"
+        app:layout_constraintBottom_toTopOf="@+id/textShowCarProperties"
+        app:layout_constraintStart_toStartOf="@+id/textShowCarProperties" />
+
+    <TextView
+        android:id="@+id/textShowCarProperties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="151dp"
+        android:hint="Properties"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
