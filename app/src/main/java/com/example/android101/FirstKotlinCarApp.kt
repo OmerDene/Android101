@@ -30,9 +30,17 @@ class FirstKotlinCarApp : AppCompatActivity() {
     fun clickCarPropertiesButton(carButton : View){
         var brand =editTextBrand.text.toString()
         var color =editTextColor.text.toString()
-        var year =editTextYear.text.toString()
-        var car = FirstCarKotlin(brand,color,year)
-        textShowCarProperties.text ="Brand :${car.brand} Color :${car.color} Year :${car.year}"
+        var year =editTextYear.text.toString().toIntOrNull()
+        textShowCarProperties.text = "${brand},${color},${year}"
+        /*if(year !=null) {
+            var car = FirstCarKotlin(brand,color,year)
+            textShowCarProperties.text ="Brand : ${car.brand} Color : ${car.color} Year : ${car.year}"
+
+        }else{
+            textShowCarProperties.text = "You must fill  the area of year with only numbers"
+        }*/
+
+
 
 
 
