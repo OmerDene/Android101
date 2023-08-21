@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toTopOf="@+id/firstKotlinCalculateResultText"
         app:layout_constraintEnd_toStartOf="@+id/button20"
         app:layout_constraintStart_toEndOf="@+id/button18"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/firstKotlinCalculatenumber1" />
 
     <Button
         android:id="@+id/button20"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button20"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/firstKotlinCalculatenumber2" />
 
     <TextView
         android:id="@+id/firstKotlinCalculateResultText"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button19" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/firstKotlinCalculatenumber1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/firstKotlinCalculatenumber2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -97,7 +97,7 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/button21"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintStart_toStartOf="@+id/firstKotlinCalculatenumber1"
+        app:layout_constraintTop_toBottomOf="@+id/firstKotlinCalculatenumber1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
