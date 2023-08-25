@@ -1,16 +1,23 @@
 package com.example.android101
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.example.android101.databinding.ActivityFirstKotlinProjectErBinding
 
 class FirstKotlinProjectER : AppCompatActivity() {
+    private lateinit var binding: ActivityFirstKotlinProjectErBinding
     lateinit var sumtextView: TextView
+    lateinit var sharedPreferences : SharedPreferences
+    var ageFromPreferences : Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first_kotlin_project_er)
-        sumtextView = findViewById(R.id.firstKotlinErTextview)
+        binding = ActivityFirstKotlinProjectErBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         sum(2420,7585)
         var simpSon = FirstSimpson("mahmut",25,"kripto")
 
@@ -19,6 +26,17 @@ class FirstKotlinProjectER : AppCompatActivity() {
         var myString : String? = null
         myString = "test"
         println(myString)
+        //SharedPrefences Initialize
+        sharedPreferences = this.getSharedPreferences("com.atilsamancioglu.storingdata",
+            Context.MODE_PRIVATE)
+
+        ageFromPreferences = sharedPreferences.getInt("age",-1)
+
+        if (ageFromPreferences == -1) {
+            binding.firstKotlinErTextview.text = "Your Age: "
+        } else {
+            binding.firstKotlinErTextview.text = "Your Age: $ageFromPreferences"
+        }
         //Nullability
 
         var myAge : Int? = null
