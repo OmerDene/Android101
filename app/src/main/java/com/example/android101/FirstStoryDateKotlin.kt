@@ -17,7 +17,13 @@ class FirstStoryDateKotlin : AppCompatActivity() {
         setContentView(view)
         sharedPreferences =this.getSharedPreferences("com.example.android101", MODE_PRIVATE)
         val agefromback = sharedPreferences.getInt("age",0)
-        binding.textViewFirstKotlinageShow.text = "your age: ${agefromback}"
+        if(agefromback == 0) {
+            binding.textViewFirstKotlinageShow.text = "There is no age"
+
+        }else{
+            binding.textViewFirstKotlinageShow.text = "your age: ${agefromback}"
+        }
+
     }
     fun save(view : View){
         val takeAge =binding.editTextFirstKotlinageInput.text.toString().toIntOrNull()
@@ -31,8 +37,12 @@ class FirstStoryDateKotlin : AppCompatActivity() {
 
     }
     fun delete(view : View){
-        val deleteage = sharedPreferences.edit().remove("age").apply()
-        binding.textViewFirstKotlinageShow.text ="Your age : ${deleteage}"
+        val agefromback = sharedPreferences.getInt("age",0)
+        if(agefromback !=0){
+            sharedPreferences.edit().remove("age").apply()
+            binding.textViewFirstKotlinageShow.text ="Deleted Age : "
+        }
+
 
 
     }
