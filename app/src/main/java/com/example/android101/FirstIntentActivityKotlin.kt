@@ -1,5 +1,6 @@
 package com.example.android101
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,11 @@ class FirstIntentActivityKotlin : AppCompatActivity() {
         setContentView(view)
     }
     fun next(view : View){
+        val intent = Intent(applicationContext,NextIntentFirtsKotlin::class.java)
+        intent.putExtra("username",binding.editTextFirstScreen.text.toString())
+        intent.putExtra("name",binding.firstScreenTextView.text.toString())
+        startActivity(intent)
+        finish()
 
 
     }
