@@ -16,8 +16,7 @@ class FirstIntentActivityKotlin : AppCompatActivity() {
     }
     fun next(view : View){
         val intent = Intent(applicationContext,NextIntentFirtsKotlin::class.java)
-        intent.putExtra("username",binding.editTextFirstScreen.text.toString())
-        intent.putExtra("name",binding.firstScreenTextView.text.toString())
+        intent.putExtra("name",binding.editTextFirstScreen.text.toString())
         startActivity(intent)
         finish()
 

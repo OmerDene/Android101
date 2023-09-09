@@ -11,6 +11,9 @@ class NextIntentFirtsKotlin : AppCompatActivity() {
         binding = ActivityNextIntentFirtsKotlinBinding.inflate(layoutInflater)
         val view =binding.root
         setContentView(view)
+        val getFromMain = intent
+        val name = intent.getStringExtra("name")
+        binding.SecondScreenTextView.text ="Name :${name}"
 
     }
 
