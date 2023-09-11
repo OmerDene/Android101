@@ -14,6 +14,35 @@ class FirstIntentActivityKotlin : AppCompatActivity() {
         val view =binding.root
         setContentView(view)
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        println("on resume called")
+
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+
+        println("on pause called")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        println("on stop called")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        println("on destroy called")
+
+    }
     fun next(view : View){
         val intent = Intent(applicationContext,NextIntentFirtsKotlin::class.java)
         intent.putExtra("name",binding.editTextFirstScreen.text.toString())
