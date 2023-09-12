@@ -3,6 +3,7 @@ package com.example.android101
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import com.example.android101.databinding.ActivityFirstIntentKotlinBinding
 
@@ -13,6 +14,16 @@ class FirstIntentActivityKotlin : AppCompatActivity() {
         binding = ActivityFirstIntentKotlinBinding.inflate(layoutInflater)
         val view =binding.root
         setContentView(view)
+        object : CountDownTimer(10000,1000) {
+            override fun onFinish() {
+                binding.CountDownTimerTextview.text = "Left: 0"
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                binding.CountDownTimerTextview.text = "Left: ${millisUntilFinished/1000}"
+            }
+
+        }.start()
     }
 
     override fun onResume() {
