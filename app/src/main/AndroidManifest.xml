@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -16,17 +16,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android101"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".FirstRunnableKotlin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".NextIntentFirtsKotlin"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".FirstIntentActivityKotlin"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +52,7 @@
         </activity>
         <activity
             android:name=".FirstAlertDialogKotlin"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,7 +65,7 @@
         </activity>
         <activity
             android:name=".FirstStoryDateKotlin"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,7 +78,7 @@
         </activity>
         <activity
             android:name=".GridLayFirstKotlin"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -78,7 +91,7 @@
         </activity>
         <activity
             android:name=".FirstKotlnCalculateApp"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -91,7 +104,7 @@
         </activity>
         <activity
             android:name=".FirstKotlinCarApp"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,7 +117,7 @@
         </activity>
         <activity
             android:name=".FirstKotlinProjectER"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -117,7 +130,7 @@
         </activity>
         <activity
             android:name=".FirstKotlinprojectER"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -130,7 +143,7 @@
         </activity>
         <activity
             android:name=".KotlinInstagram"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -159,7 +172,7 @@
         <activity
             android:name=".KotlinMaps"
             android:exported="true"
-            android:label="@string/title_activity_kotlin_maps">
+            android:label="@string/title_activity_kotlin_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -168,7 +181,7 @@
         </activity>
         <activity
             android:name=".KotlinMaps.KotlinMapsMain"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -182,7 +195,7 @@
         <activity
             android:name=".KotlinMaps.KotlinMaps"
             android:exported="true"
-            android:label="@string/title_activity_kotlin_maps">
+            android:label="@string/title_activity_kotlin_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -191,14 +204,14 @@
         </activity>
         <activity
             android:name=".KotlinArtBook.KotlinArtBookDetail"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".KotlinArtBook.KotlinArtBook"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -211,7 +224,7 @@
         </activity>
         <activity
             android:name=".KotlinSqLite"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -224,21 +237,21 @@
         </activity>
         <activity
             android:name=".view.KotlinLandMarkApp.KotlinLandMarkDetailActiviy"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".KotlinLandMarkDetailActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".view.KotlinLandMarkApp.KotlinLandMarkApp"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -251,7 +264,7 @@
         </activity>
         <activity
             android:name=".KotlinCatchGame"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -264,7 +277,7 @@
         </activity>
         <activity
             android:name=".KotlinCountDownTimer"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -277,7 +290,7 @@
         </activity>
         <activity
             android:name=".KotlinRunnable"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -290,7 +303,7 @@
         </activity>
         <activity
             android:name=".KotlinAlertDialog"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -303,7 +316,7 @@
         </activity>
         <activity
             android:name=".KotlinIntent"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -316,14 +329,14 @@
         </activity>
         <activity
             android:name=".KotlinIntentContext"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".KotlinBasicAtm"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -336,7 +349,7 @@
         </activity>
         <activity
             android:name=".KotlinNeccesarySharedPre"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -349,7 +362,7 @@
         </activity>
         <activity
             android:name=".KotlinNeccessaryInf"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -364,7 +377,7 @@
             android:name=".KotlinBasicCalculator"
             android:exported="true"
             android:label="@string/title_activity_kotlin_learning"
-            android:theme="@style/Theme.Android101">
+            android:theme="@style/Theme.Android101" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -377,7 +390,7 @@
         </activity>
         <activity
             android:name=".Kotlinn"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -390,21 +403,21 @@
         </activity>
         <activity
             android:name=".UploadActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".FeedActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".instagram.InstagramClone"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -417,7 +430,7 @@
         </activity>
         <activity
             android:name=".view.JavaMapsMain"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -431,7 +444,7 @@
         <activity
             android:name=".view.JavaMaps"
             android:exported="true"
-            android:label="@string/title_activity_java_maps">
+            android:label="@string/title_activity_java_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -440,14 +453,14 @@
         </activity>
         <activity
             android:name=".java.ArtActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".java.ArtBook"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -460,7 +473,7 @@
         </activity>
         <activity
             android:name=".java.SQLiteProject"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -473,14 +486,14 @@
         </activity>
         <activity
             android:name=".java.DetailActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".java.LandmarkBook"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -493,7 +506,7 @@
         </activity>
         <activity
             android:name=".java.Kennyyy"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -506,7 +519,7 @@
         </activity>
         <activity
             android:name=".java.RunnableHandler"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -525,7 +538,7 @@
         </activity>
         <activity
             android:name=".java.MainActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
