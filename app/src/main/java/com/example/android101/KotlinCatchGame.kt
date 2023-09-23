@@ -1,5 +1,6 @@
 package com.example.android101
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,13 +11,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_kotlin_catch_game.*
-import kotlin.random.Random
 
 class KotlinCatchGame : AppCompatActivity() {
     private var score = 0
-    val images = ArrayList<ImageView>()
-    lateinit var runnable: Runnable
-    var handler : Handler = Handler(Looper.getMainLooper())
+    private val images = ArrayList<ImageView>()
+    private lateinit var runnable: Runnable
+    private var handler : Handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +31,13 @@ class KotlinCatchGame : AppCompatActivity() {
         images.add(imageView7)
         images.add(imageView8)
         images.add(imageView9)
-        ımageHide()
-
+        imageHide()
 
         object :CountDownTimer(5000,1000){
+            @SuppressLint("SetTextI18n")
             override fun onTick(p0: Long) {
 
-                timeText.text ="Time : ${p0/1000}"
+                timeText.text = getString(R.string.time) + "${p0/1000}"
 
             }
 
@@ -48,59 +48,39 @@ class KotlinCatchGame : AppCompatActivity() {
                 }
 
                 Toast.makeText(this@KotlinCatchGame, "Time is up", Toast.LENGTH_LONG).show()
-                var warning = AlertDialog.Builder(this@KotlinCatchGame)
+                val warning = AlertDialog.Builder(this@KotlinCatchGame)
                 warning.setTitle("Restart Game")
                 warning.setMessage("Do you want to play one more time ?")
-                warning.setPositiveButton("Yes"){dialog,which->
+                warning.setPositiveButton("Yes"){ _,_->
                     finish()
                     startActivity(intent)
-
-
-
-
                 }
-                warning.setNegativeButton("No"){dialog,which->
+
+                warning.setNegativeButton("No"){ _,_->
                     Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
-
-
-
                 }
                 warning.show()
-
-
-
             }
-
-
         }.start()
-
-
     }
-    fun increaseScore(view : View){
-        score= score+1
-        scoreText.text ="score : ${score}"
 
-
+    @SuppressLint("SetTextI18n")
+    fun increaseScore(view: View) {
+        score++
+        scoreText.text ="score : $score"
     }
-    fun ımageHide(){
-        runnable = object :Runnable{
-            override fun run() {
-                for(i in images){
-                    i.visibility =View.INVISIBLE
-                }
 
-                var random = java.util.Random()
-                var randomIndeks = random.nextInt(9)
-                images[randomIndeks].visibility =View.VISIBLE
-                handler.postDelayed(runnable,500)
-
+    private fun imageHide(){
+        runnable = Runnable {
+            for(i in images){
+                i.visibility =View.INVISIBLE
             }
 
-
+            val random = java.util.Random()
+            val randomIndex = random.nextInt(9)
+            images[randomIndex].visibility = View.VISIBLE
+            handler.postDelayed(runnable,500)
         }
         handler.post(runnable)
-
-
-
     }
 }

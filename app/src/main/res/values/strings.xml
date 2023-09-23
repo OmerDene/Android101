@@ -3,4 +3,5 @@
     <string name="title_activity_java_maps">JavaMaps</string>
     <string name="title_activity_kotlin_learning">KotlinLearning</string>
     <string name="title_activity_kotlin_maps">KotlinMaps</string>
+    <string name="time">Time : </string>
 </resources>
