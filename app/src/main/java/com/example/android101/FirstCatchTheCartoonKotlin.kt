@@ -2,6 +2,7 @@ package com.example.android101
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.view.View
@@ -35,7 +36,23 @@ class FirstCatchTheCartoonKotlin : AppCompatActivity() {
         imageArray.add(binding.imageView8)
         imageArray.add(binding.imageView9)
         hideImages()
+        object : CountDownTimer(15000,1000){
+            override fun onTick(p0: Long) {
+                binding.timeText.text = "Time :  ${p0/1000}"
+
+
+            }
+
+            override fun onFinish() {
+                handler.removeCallbacks(runnable)
+                for (image in imageArray) {
+                    image.visibility = View.INVISIBLE
+                }
+            }
+
+        }.start()
     }
+
     fun hideImages(){
         runnable = object : Runnable{
             override fun run() {
