@@ -1,5 +1,6 @@
 package com.example.android101
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -7,6 +8,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.android101.databinding.ActivityFirstCatchTheCartoonKotlinBinding
 import com.example.android101.databinding.ActivityKotlinRunnableBinding
 import java.util.*
@@ -45,9 +48,24 @@ class FirstCatchTheCartoonKotlin : AppCompatActivity() {
 
             override fun onFinish() {
                 handler.removeCallbacks(runnable)
+                binding.scoreText.text = "Score : 0"
                 for (image in imageArray) {
                     image.visibility = View.INVISIBLE
                 }
+                var alert = AlertDialog.Builder(this@FirstCatchTheCartoonKotlin)
+                alert.setTitle("Game Over")
+                alert.setMessage("Restart the game ?")
+                alert.setPositiveButton("Yes",DialogInterface.OnClickListener { dialogInterface, i ->
+                    var intenFromMain = intent
+                    finish()
+                    startActivity(intenFromMain)
+
+                })
+                alert.setNegativeButton("No",DialogInterface.OnClickListener { dialogInterface, i ->
+
+                    Toast.makeText(this@FirstCatchTheCartoonKotlin,":(",Toast.LENGTH_LONG).show()
+                })
+                alert.show()
             }
 
         }.start()
