@@ -9,6 +9,11 @@ class OopKotlinPlus : AppCompatActivity() {
         setContentView(R.layout.activity_oop_kotlin_plus)
         var abc = OopUser("zeki",34)
         abc.name = "mehmet"
-        println(abc.name)
+        //println(abc.name)
+        var tarkan = MusicianKotlin("tarkan","guitar",21)
+        println(tarkan.instrument)
+
+
+
     }
 }

@@ -10,5 +10,8 @@ constructor(nameInput:String,ageInput:Int){
     this.age = ageInput
     println("ben")
 }
+    init {
+        println("init")
+    }
 
 }
