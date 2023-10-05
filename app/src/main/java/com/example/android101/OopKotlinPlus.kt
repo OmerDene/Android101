@@ -12,6 +12,14 @@ class OopKotlinPlus : AppCompatActivity() {
         //println(abc.name)
         var tarkan = MusicianKotlin("tarkan","guitar",21)
         println(tarkan.instrument)
+       println(tarkan.bandNameControl("atil"))
+        println(tarkan.bandNameControl("mahmut"))
+        val omerbey = SuperMusicianKotlin("omer","bass guitar",13)
+        println(omerbey.instrument)
+        println(omerbey.agee)
+        omerbey.sing()
+        println(omerbey.bandNameControl("atil"))
+
 
 
 
