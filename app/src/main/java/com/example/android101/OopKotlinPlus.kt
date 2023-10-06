@@ -11,14 +11,18 @@ class OopKotlinPlus : AppCompatActivity() {
         abc.name = "mehmet"
         //println(abc.name)
         var tarkan = MusicianKotlin("tarkan","guitar",21)
-        println(tarkan.instrument)
-       println(tarkan.bandNameControl("atil"))
-        println(tarkan.bandNameControl("mahmut"))
+        //println(tarkan.instrument)
+       //println(tarkan.bandNameControl("atil"))
+        //println(tarkan.bandNameControl("mahmut"))
         val omerbey = SuperMusicianKotlin("omer","bass guitar",13)
-        println(omerbey.instrument)
-        println(omerbey.agee)
-        omerbey.sing()
-        println(omerbey.bandNameControl("atil"))
+        //println(omerbey.instrument)
+        //println(omerbey.agee)
+        //omerbey.sing()
+        //println(omerbey.bandNameControl("atil"))
+        val matematik = Mathematics()
+        println(matematik.sum())
+        println(matematik.sum(10,5))
+        println(matematik.sum(2,4,7))
 
 
 
