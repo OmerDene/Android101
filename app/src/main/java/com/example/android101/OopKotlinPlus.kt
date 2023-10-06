@@ -20,9 +20,14 @@ class OopKotlinPlus : AppCompatActivity() {
         //omerbey.sing()
         //println(omerbey.bandNameControl("atil"))
         val matematik = Mathematics()
-        println(matematik.sum())
-        println(matematik.sum(10,5))
-        println(matematik.sum(2,4,7))
+        //println(matematik.sum())
+       // println(matematik.sum(10,5))
+       // println(matematik.sum(2,4,7))
+        val animal = AnimalKotlin()
+        val dog = DogKotlin()
+        println(animal.sign())
+        println(dog.test())
+        println(dog.sign())
 
 
 
