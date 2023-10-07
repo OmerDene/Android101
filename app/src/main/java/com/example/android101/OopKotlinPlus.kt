@@ -29,7 +29,14 @@ class OopKotlinPlus : AppCompatActivity() {
         //println(dog.test())
         //println(dog.sign())
         val userdeneme = OopUser("ahmet",16)
-        println(userdeneme.information())
+        //userdeneme.information()
+        var myPiano = Piano()
+        myPiano.brand= "Yamaha"
+        myPiano.digital = true
+        println(myPiano.brand)
+        println(myPiano.digital)
+        println(myPiano.roomName)
+        myPiano.info()
 
 
 
