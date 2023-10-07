@@ -25,9 +25,11 @@ class OopKotlinPlus : AppCompatActivity() {
        // println(matematik.sum(2,4,7))
         val animal = AnimalKotlin()
         val dog = DogKotlin()
-        println(animal.sign())
-        println(dog.test())
-        println(dog.sign())
+        //println(animal.sign())
+        //println(dog.test())
+        //println(dog.sign())
+        val userdeneme = OopUser("ahmet",16)
+        println(userdeneme.information())
 
 
 
