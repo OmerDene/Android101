@@ -4,7 +4,7 @@ package com.example.android101
     var brand : String? = null
     var digital : Boolean? = null
      override var roomName: String
-         get() = "kitchen"
+         get() = "door"
          set(value) {}
 
  }

@@ -33,13 +33,28 @@ class OopKotlinPlus : AppCompatActivity() {
         var myPiano = Piano()
         myPiano.brand= "Yamaha"
         myPiano.digital = true
-        println(myPiano.brand)
-        println(myPiano.digital)
-        println(myPiano.roomName)
-        myPiano.info()
+        //println(myPiano.brand)
+        //println(myPiano.digital)
+        //println(myPiano.roomName)
+        //myPiano.info()
+        //myPiano.roomName = "door"
+        //println(myPiano.roomName)
+        printString("mea")
+        val testString = {myString : String -> println(myString)}
+        testString("My Lambda String")
+        val count = {a : Int , b : Int-> a*b }
+        var deneme = count(3,6)
+        println(deneme)
+        var count2 : (Int ,Int)->Int = {a,b -> a*b}
+        println(count2(1,145))
 
 
 
 
     }
+    fun printString(myString : String){
+        println(myString)
+    }
+
+
 }
