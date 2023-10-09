@@ -47,6 +47,18 @@ class OopKotlinPlus : AppCompatActivity() {
         println(deneme)
         var count2 : (Int ,Int)->Int = {a,b -> a*b}
         println(count2(1,145))
+        //callback function, listener function, completion function
+
+        fun downloadMusicians(url: String, completion : (MusicianKotlin) -> Unit) {
+            //url -> download
+            //data
+            val kirkHammet = MusicianKotlin("Kirk","Guitar",60)
+            completion(kirkHammet)
+        }
+
+        downloadMusicians("metallica.com",{ musician ->
+            println(musician.namee)
+        })
 
 
 
