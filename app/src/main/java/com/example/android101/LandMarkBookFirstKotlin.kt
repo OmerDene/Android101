@@ -2,10 +2,15 @@ package com.example.android101
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.android101.databinding.ActivityLandMarkBookFirstKotlinBinding
+import com.example.android101.databinding.ActivityLandMarkDetailsFirstKotlinBinding
 
 class LandMarkBookFirstKotlin : AppCompatActivity() {
+    private lateinit var binding : ActivityLandMarkBookFirstKotlinBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_land_mark_book_first_kotlin)
+        binding = ActivityLandMarkBookFirstKotlinBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
     }
 }
