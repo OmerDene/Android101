@@ -1,7 +1,10 @@
 package com.example.android101
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.example.android101.databinding.ActivityLandMarkBookFirstKotlinBinding
 import com.example.android101.databinding.ActivityLandMarkDetailsFirstKotlinBinding
 
@@ -23,7 +26,16 @@ class LandMarkBookFirstKotlin : AppCompatActivity() {
         landMarkList.add(eifel)
         landMarkList.add(londonBringe)
         landMarkList.add(colesium)
+        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landMarkList.map { landmark -> landmark.name })
 
+        binding.listViewLadmark.adapter = adapter
+
+        binding.listViewLadmark.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val intent = Intent(applicationContext,LandMarkDetailsActivityFirstKotlin::class.java)
+            intent.putExtra("landmark",landMarkList[position])
+            //MySingleton.selectedLandmark = landmarkList[position]
+            startActivity(intent)
 
     }
+}
 }
