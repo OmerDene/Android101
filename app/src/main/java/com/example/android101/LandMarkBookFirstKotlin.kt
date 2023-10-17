@@ -26,7 +26,7 @@ class LandMarkBookFirstKotlin : AppCompatActivity() {
         landMarkList.add(eifel)
         landMarkList.add(londonBringe)
         landMarkList.add(colesium)
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landMarkList.map { landmark -> landmark.name })
+        /*val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landMarkList.map { landmark -> landmark.name })
 
         binding.listViewLadmark.adapter = adapter
 
@@ -35,7 +35,6 @@ class LandMarkBookFirstKotlin : AppCompatActivity() {
             intent.putExtra("landmark",landMarkList[position])
             //MySingleton.selectedLandmark = landmarkList[position]
             startActivity(intent)
-
+*/
     }
-}
 }
