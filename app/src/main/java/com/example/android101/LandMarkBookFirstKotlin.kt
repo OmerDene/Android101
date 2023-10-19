@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android101.databinding.ActivityLandMarkBookFirstKotlinBinding
 import com.example.android101.databinding.ActivityLandMarkDetailsFirstKotlinBinding
 
@@ -26,6 +27,9 @@ class LandMarkBookFirstKotlin : AppCompatActivity() {
         landMarkList.add(eifel)
         landMarkList.add(londonBringe)
         landMarkList.add(colesium)
+        binding.recyclerViewLandmark.layoutManager = LinearLayoutManager(this)
+        val landmarkAdapter = LandmarkAdapterKotlin(landMarkList)
+        binding.recyclerViewLandmark.adapter = landmarkAdapter
         /*val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landMarkList.map { landmark -> landmark.name })
 
         binding.listViewLadmark.adapter = adapter

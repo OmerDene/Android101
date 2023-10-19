@@ -1,23 +1,29 @@
 package com.example.android101
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android101.databinding.RecyclerRowLandmarkKotlinBinding
 
-class LandmarkAdapterKotlin : RecyclerView.Adapter<LandmarkAdapterKotlin.LandmarkHolder>() {
-    class LandmarkHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class LandmarkAdapterKotlin(val landmarkList : ArrayList<LandMarkFirstKotlin>) : RecyclerView.Adapter<LandmarkAdapterKotlin.LandmarkHolder>() {
+    class LandmarkHolder(val binding :RecyclerRowLandmarkKotlinBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LandmarkHolder {
-        TODO("Not yet implemented")
+        // layout ile baglama işlemi
+        val binding = RecyclerRowLandmarkKotlinBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return LandmarkHolder(binding)
     }
 
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
-        TODO("Not yet implemented")
+        // layout baglandıktan sonra ne olacak
+        holder.binding.recyclerViewLandmarkRowTextView.text = landmarkList.get(position).name
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        // kac tane olusturulacak
+        return landmarkList.size
     }
 }
