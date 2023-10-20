@@ -1,5 +1,6 @@
 package com.example.android101
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,11 @@ class LandmarkAdapterKotlin(val landmarkList : ArrayList<LandMarkFirstKotlin>) :
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
         // layout baglandıktan sonra ne olacak
         holder.binding.recyclerViewLandmarkRowTextView.text = landmarkList.get(position).name
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context,LandMarkDetailsActivityFirstKotlin::class.java)
+            intent.putExtra("landmark",landmarkList.get(position))
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -13,13 +13,13 @@ class LandMarkDetailsActivityFirstKotlin : AppCompatActivity() {
         binding = ActivityLandMarkDetailsFirstKotlinBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-       /* val intent = intent
+        val intent = intent
         val landmark = intent.getSerializableExtra("landmark") as LandMarkFirstKotlin
         binding.landMarkNameTextWiew.text = landmark.name
         binding.landMarkCountryTextView.text = landmark.country
         binding.landMarkFirstKotlinImage.setImageResource(landmark.image)
 
-*/
+
 
 
 
