@@ -11,6 +11,18 @@ class FirstKotlinSQLite : AppCompatActivity() {
         try{
             val myDataBaseSql =this.openOrCreateDatabase("Musicians", MODE_PRIVATE,null)
             myDataBaseSql.execSQL("CREATE TABLE IF NOT EXISTS musicians (id INTEGER PRIMARY KEY,name VARCHAR, age INT)")
+            myDataBaseSql.execSQL("INSERT INTO musicians (name, age) VALUES ('James',50)")
+            val cursor = myDataBaseSql.rawQuery("SELECT * FROM musicians",null)
+            val nameIx = cursor.getColumnIndex("name")
+            val ageIx = cursor.getColumnIndex("age")
+            while (cursor.moveToNext()) {
+                println("Name: " + cursor.getString(nameIx))
+                println("Age: " + cursor.getInt(ageIx))
+
+            }
+
+            cursor.close()
+
 
         }catch (e:Exception){
             e.printStackTrace()
