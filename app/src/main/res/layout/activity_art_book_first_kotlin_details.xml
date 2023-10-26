@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ArtBookFirstKotlinDetails">
+
+    <ImageView
+        android:id="@+id/artBookFirstImageViewText"
+        android:layout_width="212dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="31dp"
+        android:onClick="selectedPicture"
+        app:layout_constraintBottom_toTopOf="@+id/artBookFirstKotlinArtNameEdittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fotosec" />
+
+    <EditText
+        android:id="@+id/artBookFirstKotlinArtNameEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="57dp"
+        android:ems="10"
+        android:hint="Art Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/artBookFirstKotlinArtissstNameEdittext"
+        app:layout_constraintStart_toStartOf="@+id/artBookFirstImageViewText"
+        app:layout_constraintTop_toBottomOf="@+id/artBookFirstImageViewText" />
+
+    <EditText
+        android:id="@+id/artBookFirstKotlinArtissstNameEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="22dp"
+        android:ems="10"
+        android:hint="Artist Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/artBookFirstKotlinYearEdittext"
+        app:layout_constraintStart_toStartOf="@+id/artBookFirstKotlinArtNameEdittext"
+        app:layout_constraintTop_toBottomOf="@+id/artBookFirstKotlinArtNameEdittext" />
+
+    <EditText
+        android:id="@+id/artBookFirstKotlinYearEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="31dp"
+        android:ems="10"
+        android:hint="Year"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/artBookSave"
+        app:layout_constraintEnd_toEndOf="@+id/artBookFirstKotlinArtissstNameEdittext"
+        app:layout_constraintTop_toBottomOf="@+id/artBookFirstKotlinArtissstNameEdittext" />
+
+    <Button
+        android:id="@+id/artBookSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:onClick="save"
+        android:text="save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artBookFirstKotlinYearEdittext" />
+</androidx.constraintlayout.widget.ConstraintLayout>
